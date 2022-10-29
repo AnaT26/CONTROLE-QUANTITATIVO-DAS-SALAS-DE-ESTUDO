@@ -65,6 +65,9 @@ def valida_senha(email,senha):
         return render_template("home.html", erro="Login Incorreto")
 #se email e a senha forem verificados retorna uma mensagem de erro ou a lista com as salas
 
+@app.route("/voltars", methods=["POST"])
+def voltars():
+    return render_template("salas.html")
 
 @app.route("/cadastro", methods=["POST"])
 def cadastro():
