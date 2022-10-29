@@ -128,6 +128,11 @@ def cadastrar(nome, dre, curso, email, senha, repetesenha):
 
 
 
+'''@app.route("/bv.html")
+    sala = "H323"
+def soma(sala):
+    sala = request.form("D206")
+    '''
 
 '''@app.route("/bv.html")
 # exemplo: nome = "H342"
