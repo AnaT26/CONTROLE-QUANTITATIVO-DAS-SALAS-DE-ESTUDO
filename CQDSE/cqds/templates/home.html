@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>Tempo e estudo</title>
+    <link rel= "stylesheet" type= "text/css" href="static\styles\home.css">
+</head>
+
+<body>
+    <div class="testandoo">
+       <h1>Faça login</h1>
+    </div>
+
+    <form action="/login" method="post">
+        Email:<input type="email" name="email"> <br>
+        Senha:<input type="password" name="senha"> <br>
+        <input type="submit" value="Entrar">
+    </form>
+    <form action="/cadastro" method="post">
+        <input type="submit" value="cadastre-se" name="cadastro">
+        {{cr}}
+        {{erro}}
+
+    </form>
+</body>
+</html>
