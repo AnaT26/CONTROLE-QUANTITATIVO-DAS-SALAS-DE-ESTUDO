@@ -1,22 +1,21 @@
 <html>
 
 <head>
-    <title>Tempo e estudo</title>
+    <title>Tempo &eacute estudo</title>
     <link rel= "stylesheet" type= "text/css" href="static\styles\home.css">
 </head>
 
 <body>
-    <div class="testandoo">
+    <body topmargin="0" leftmargin="0" rightmargin="0"></body>
        <h1>Faça login</h1>
-    </div>
 
-    <form action="/login" method="post">
+    <form class="adicionar" action="/login" method="post">
         Email:<input type="email" name="email"> <br>
         Senha:<input type="password" name="senha"> <br>
         <input type="submit" value="Entrar">
     </form>
 
-    <form action="/cadastro" method="post">
+    <form class="botao" action="/cadastro" method="post">
         <input type="submit" value="cadastre-se" name="cadastro">
         {{cr}}
         {{erro}}
