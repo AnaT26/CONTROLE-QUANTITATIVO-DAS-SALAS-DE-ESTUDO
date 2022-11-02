@@ -8,10 +8,21 @@
 <body>
 
   <h1>Sala H323</h1>
+  <p>Número de pessoas {{n}} lotação máxima 62</p>
+  <P>Por favor não entre ou saia sem estar presencialmente na sala</P>
+  <form action="/entra/1" method="post">
+    <input type="submit" value="Entrar">
+  </form>
+  <form action="/sai/1" method="post">
+    <input type="submit" value="Sair">
+  </form>
+
   <form action="/voltars" method="post">
     <input type="submit" value="voltar">
   </form>
-
+  <form action="/voltars" method="post">
+    <input type="submit" value="voltar">
+  </form>
 </body>
 
 </html>

@@ -8,6 +8,16 @@
 <body>
 
   <h1>Sala D216</h1>
+  <p>Número de pessoas {{n}} lotação máxima 20</p>
+  <P>Por favor não entre ou saia sem estar presencialmente na sala</P>
+  
+  <form action="/entra/3" method="post">
+    <input type="submit" value="Entrar">
+  </form>
+  <form action="/sai/3" method="post">
+    <input type="submit" value="Sair">
+  </form>
+  
   <form action="/voltars" method="post">
     <input type="submit" value="voltar">
   </form>

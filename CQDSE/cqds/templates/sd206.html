@@ -4,10 +4,18 @@
    <title> Visualizar Salas</title>
    <link rel="stylesheet" type="text/css" href="static\styles\sd206.css">
 </head>
-
+ 
 <body>
 
    <h1>Sala D206</h1>
+   <p>Número de pessoas {{n}} lotação máxima 30</p>
+   <P>Por favor não entre ou saia sem estar presencialmente na sala</P>
+   <form action="/entra/2" method="post">
+      <input type="submit" value="Entrar">
+   </form>
+   <form action="/sai/2" method="post">
+      <input type="submit" value="Sair">
+   </form>
 
    <form action="/voltars" method="post">
       <input type="submit" value="voltar">

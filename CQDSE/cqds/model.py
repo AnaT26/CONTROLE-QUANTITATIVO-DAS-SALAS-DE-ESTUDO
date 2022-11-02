@@ -1,6 +1,6 @@
 from tkinter import E
 from flask_login import UserMixin
-from .view import te
+#from .view import te
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 import sqlite3
@@ -21,7 +21,7 @@ te = SQLAlchemy(app)
 print(te.MetaData())
 
 #from .model import User, NewUser
-print("basedir:", basedir)
+
 
 
 '''''''''class User(UserMixin, te.Model):
@@ -35,19 +35,58 @@ class NewUser(User):
     curso = te.Column(te.String(1000))
     #pass'''''''''
 
-class Sala():
-    def __init__(self, nome, np):
-        self.nome = nome
-        self.np = np
-    def inserir_sala(self, nome, np):
-        self.nome = input("Insira o nome da sala (ex:d206):")
-        self.np = input("Insira o numero de pessoas na sala:/n")
+class Sala:
+    def __init__(self):
+        pass
+    def inserir_sala(self):
+        self.nome = input("Insira o nome da sala (ex:d206):\n")
+        self.np = input("Insira o numero de pessoas na sala:\n")
         conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
         c = conn.cursor()
-        c.executescript("INSERT INTO sala(nome, np) VALUES('"+nome+"','"+np+"')")
+        c.executescript("INSERT INTO sala(nome, np) VALUES('"+self.nome+"','"+self.np+"')")
         conn.commit()
-    
+    def entrar(self, id_s):
+        conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
+        c = conn.cursor()
+        n = c.execute("SELECT np FROM sala WHERE id_s=?",[str(id_s)])
+        rows = n.fetchone()
+        linha = rows[0]
+        soma1 = int(linha) + 1
+        c.execute("UPDATE sala SET np = ? WHERE id_s = ?",[int(soma1), str(id_s)])
+        conn.commit()
+        print(linha, soma1)
+    def sair(self, id_s):
+        conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
+        c = conn.cursor()
+        n = c.execute("SELECT np FROM sala WHERE id_s=?",[str(id_s)])
+        rows = n.fetchone()
+        linha = rows[0]
+        sub1 = int(linha) - 1
+        c.execute("UPDATE sala SET np = ? WHERE id_s = ?",[int(sub1), str(id_s)])
+        conn.commit()
+        print(linha, sub1)
+        return render_template("vs.html")
+    def buscar(self, id_s):
+        conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
+        post = conn.execute('SELECT * FROM sala WHERE id_s = ?',(id_s,)).fetchone()
+        conn.commit()
+    def buscar_np(self, id_s):
+        conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
+        c = conn.cursor()
+        n = c.execute("SELECT np FROM sala WHERE id_s=?",[str(id_s)])
+        rows = n.fetchone()
+        linha = rows[0]
+        conn.commit()
+        print(linha)
+        return linha
+        
+
+#Sala().buscar(2)
+
+#Sala().inserir_sala() 
+#A função acima atualiza os bancos de dados das salas de estudo
+#Sala().entrar(2)
  
-    
+#atualizar o valor do bd e fazer essa função somar no valor de uma sala especifica, e mostrar valor no html
 
 
