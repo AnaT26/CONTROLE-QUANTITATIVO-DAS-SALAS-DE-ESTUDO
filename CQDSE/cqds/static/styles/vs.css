@@ -1,0 +1,11 @@
+h1 {
+    top: 0;
+    padding: 60px 0;
+    text-align: center;
+    font-size: 40px;
+    background-image: linear-gradient(to right,  rgb(255, 25, 0) ,  rgb(255, 0, 98));
+    color: white;
+    width: 100%;
+    font-family: "Monaco";
+    margin: 0px;
+  }
