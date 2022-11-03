@@ -16,19 +16,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 te = SQLAlchemy(app)
 
-print(te.MetaData())
-
-#from .model import User, NewUser
-print("basedir:", basedir)
-
 
 @app.route("/")
 def home():
     return render_template("home.html")
 # pagina inicial do site
 
-
-(...)
 
 
 @app.route("/home", methods=["POST"])
@@ -78,7 +71,7 @@ def f_cadastro():
     email = request.form["email"]
     repetesenha = request.form["repetesenha"]
     return cadastrar(nome, dre, curso, email, senha, repetesenha)
-# depois de coletar os dados de cadastro, retorna para a home com uma mensagem de cadastro realizado
+# depois de coletar os dados de cadastro, retorna para a função cadastrar
 
 
 def cadastrar(nome, dre, curso, email, senha, repetesenha):
@@ -100,12 +93,15 @@ def cadastrar(nome, dre, curso, email, senha, repetesenha):
             return render_template("home.html", cr="cadastro realizado")
         else:
             return render_template("cadastro.html", erro1="Senhas não correspondentes")
-
+'''verifica se o email não é cadastrado e se as senhas são iguais se estas condições forem 
+satisfeitas retorna para a pagina de login com uma mensagem de cadastro realizado, se não retorna uma mensagem de acordo com 
+o erro
+'''
 
 @app.route("/voltars", methods=["POST"])
 def voltars():
     return render_template("salas.html")
-
+#rota que retorna para a lista com as salas
 
 @app.route("/cadastro", methods=["POST"])
 def cadastro():
@@ -137,6 +133,7 @@ def sai(id_s):
     temp = Sala().sair(id_s)
     print(temp)
     return render_template("vs.html")
+#esta rota direciona para o html com uma mensagem de volte sempre e subtrai um do nùmero de pessoas da sala correspondente
 
 
 @app.route('/entra/<int:id_s>', methods=('POST',))
@@ -144,23 +141,5 @@ def entra(id_s):
     temp = Sala().entrar(id_s)
     print(temp)
     return render_template("bv.html")
+#esta rota direciona para o html com uma mensagem de bem vindo e soma um no nùmero de pessoas da sala correspondente
 
-
-# verifica se o usuario ja esta cadastrado, se não verifica se as senhas batem. Se as duas condições forem atentidas então cadastra um novo usuario
-
-'''@app.route("/bv.html")
-    sala = "H323"
-def soma(sala):
-    sala = request.form("D206")
-    '''
-
-'''@app.route("/bv.html")
-# exemplo: nome = "H342"
-def soma(nome):
-    #sala = request so botao # "D206"
-    # pegar quantidade atual de pessoas na sala 
-    # metodo SELECT coluna nome=D206 no banco de dados
-    pass
-    # somar 1 na variavel de quantidade'''
-
-# metodo UPDATE na quantidade do banco de dados
