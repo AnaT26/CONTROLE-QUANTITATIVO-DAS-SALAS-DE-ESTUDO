@@ -1,8 +1,6 @@
 from tkinter import E
 from flask_login import UserMixin
-#from .view import te
 from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
 import sqlite3
 
 from flask_sqlalchemy import SQLAlchemy
@@ -20,20 +18,6 @@ te = SQLAlchemy(app)
 
 print(te.MetaData())
 
-#from .model import User, NewUser
-
-
-
-'''''''''class User(UserMixin, te.Model):
-    id_u = te.Column(te.Integer, primary_key=True) # primary keys are required by SQLAlchemy
-    email = te.Column(te.String(100), unique=True)
-    senha = te.Column(te.String(100))
-    nome = te.Column(te.String(1000))
-
-class NewUser(User):
-    dre = te.Column(te.String(100)) #, primary_key=True)
-    curso = te.Column(te.String(1000))
-    #pass'''''''''
 
 class Sala:
     def __init__(self):
@@ -45,6 +29,7 @@ class Sala:
         c = conn.cursor()
         c.executescript("INSERT INTO sala(nome, np) VALUES('"+self.nome+"','"+self.np+"')")
         conn.commit()
+    #metodo que insere uma nova classe no DB
     def entrar(self, id_s):
         conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
         c = conn.cursor()
@@ -55,6 +40,7 @@ class Sala:
         c.execute("UPDATE sala SET np = ? WHERE id_s = ?",[int(soma1), str(id_s)])
         conn.commit()
         print(linha, soma1)
+    #metodo que soma um no numero de pessoas armazenado no banco de dados
     def sair(self, id_s):
         conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
         c = conn.cursor()
@@ -65,11 +51,7 @@ class Sala:
         c.execute("UPDATE sala SET np = ? WHERE id_s = ?",[int(sub1), str(id_s)])
         conn.commit()
         print(linha, sub1)
-        return render_template("vs.html")
-    def buscar(self, id_s):
-        conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
-        post = conn.execute('SELECT * FROM sala WHERE id_s = ?',(id_s,)).fetchone()
-        conn.commit()
+    #metodo que subtrai um do numero de pessoas armazenado no bd
     def buscar_np(self, id_s):
         conn = sqlite3.connect(os.path.join(basedir, 'te.db'))
         c = conn.cursor()
@@ -79,14 +61,8 @@ class Sala:
         conn.commit()
         print(linha)
         return linha
+    #metodo que busca no DB o numero de pessoas na sala
         
 
-#Sala().buscar(2)
-
-#Sala().inserir_sala() 
-#A função acima atualiza os bancos de dados das salas de estudo
-#Sala().entrar(2)
- 
-#atualizar o valor do bd e fazer essa função somar no valor de uma sala especifica, e mostrar valor no html
 
 
